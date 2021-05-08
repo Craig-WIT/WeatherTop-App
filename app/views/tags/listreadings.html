@@ -1,0 +1,45 @@
+<table class="ui fixed table">
+    <thead>
+    <tr>
+        <th>Date / Time</th>
+        <th>Weather Code</th>
+        <th>Temperature (Celsius)</th>
+        <th>Wind Speed (kM / hr)</th>
+        <th>Wind Direction</th>
+        <th>Pressure (hPa)</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    #{list items:_station.readings, as:'reading'}
+    <tr>
+        <td>
+            ${reading.date}
+        </td>
+        <td>
+            ${reading.code}
+        </td>
+        <td>
+            ${reading.temperature}
+        </td>
+        <td>
+            ${reading.windSpeed}
+        </td>
+        <td>
+            ${reading.windDirection}
+        </td>
+        <td>
+            ${reading.pressure}
+        </td>
+        <td>
+            <a href="/stations/${_station.id}/deletereading/${reading.id}">
+                <div id="deleteButton" class="tiny red ui animated button" tabindex="0">
+                    <div class="visible content">Delete Reading</div>
+                    <div class="hidden content">Are you sure?</div>
+                </div>
+            </a>
+        </td>
+    </tr>
+    #{/list}
+    </tbody>
+</table>

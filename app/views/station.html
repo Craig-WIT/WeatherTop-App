@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"dashboard"/}
+
+<section class="ui segment" style="border: 3px solid #043F8C; border-radius: 10px; background-color: #C9E5F0;">
+    <h2 class="ui header">
+        ${station.name}
+    </h2>
+    <!--<div class="ui segment">
+        <div class="ui five cards">
+            #{list items:station.lastReading, as:'reading'}
+            <div class="card" id="cardStyle"><h3>Station</h3>
+                <p>Latitude ${station.lat} <img class="ui image" id="weatherImage" src= "/public/images/location.png">
+                    <br>Longitude ${station.lng}</p>
+            </div>
+            <div class="card" id="cardStyle"><h3>Weather</h3>
+                <p>${weatherCode} <img class="ui image" id="weatherImage" src= ${icon}></p>
+            </div>
+            <div class="card" id="cardStyle"><h3>Temperature </h3>
+                <p>${tempCelsius} C <img class="ui image" id="weatherImage" src= "/public/images/temperature.png">
+                    <br>${tempFarenheit} F
+                    <br>Max: ${maxTemp} C
+                    <br>Min: ${minTemp} C</p>
+            </div>
+            <div class="card" id="cardStyle"><h3>Wind</h3>
+                <p>${beaufortScale} bft <img class="ui image" id="weatherImage" src= "/public/images/compass.png">
+                    <br>${windCompass}
+                    <br>Feels like
+                    <br>${windChill} C
+                    <br>Max: ${maxWind} kM/hr
+                    <br>Min: ${minWind} kM/hr</p>
+            </div>
+            <div class="card" id="cardStyle"><h3>Pressure</h3>
+                <p>${pressure} hPa <img class="ui image" id="weatherImage" src= "/public/images/pressure.png">
+                    <br>Max: ${maxPressure} hPa
+                    <br>Min: ${minPressure} hPa</p>
+            </div>
+            #{/list}
+        </div>
+    </div>-->
+    #{weatherSummary station:station /}
+    #{listreadings station:station /}
+</section>
+#{addreading station:station /}
