@@ -3,6 +3,7 @@
 
 #{menu id:"member"/}
 
+<div class="ui red basic label"><i class="exclamation circle icon"></i>No Member details can be left blank - Please try again</div>
 <section class="ui segment" style="border: 3px solid #043F8C; border-radius: 10px; background-color: #C9E5F0;">
     <h2 class="ui header">
         Membership of ${member.firstname} ${member.lastname}
@@ -26,7 +27,6 @@
 </section>
 <form class="ui stacked segment form" action="/member/${member.id}/updatedetails" method="POST" style="color: white; background-color: #C9E5F0; border: 3px solid white;">
     <div class="field">
-        <div class="ui pointing below red basic label">**No details can be left blank - Please try again**</div>
         <label>Change First Name</label>
         <input placeholder="New First Name" type="text" name="firstname">
         <label>Change Last Name</label>

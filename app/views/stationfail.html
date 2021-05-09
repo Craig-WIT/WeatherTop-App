@@ -3,16 +3,17 @@
 
 #{menu id:"dashboard"/}
 
+<div class="ui red basic label"><i class="exclamation circle icon"></i>No weather details can be left blank - Please try again</div>
 <section class="ui segment" style="border: 3px solid #043F8C; border-radius: 10px; background-color: #C9E5F0;">
-    <h3 class="ui header">
-        ${station.name} - Latest Weather
-    </h3>
+    <h2 class="ui header">
+        ${station.name}
+    </h2>
     #{if station.readings.size() > 0}
     #{weatherSummary station:station /}
     #{listreadings station:station /}
     #{/if}
     #{else}
-    <p>No weather readings have been added for this Station</p>
+    <p>No weather readings have been added</p>
     #{/else}
 </section>
 #{addreading station:station /}

@@ -36,8 +36,13 @@ public class StationCtrl extends Controller
         roundDate = DateUtils.round(date, Calendar.SECOND);
         Reading reading = new Reading(code,pressure,windDirection,temperature,windSpeed,roundDate);
         Station station = Station.findById(id);
-        station.readings.add(reading);
-        station.save();
-        redirect ("/stations/" + id);
+        if((code == 0) || (pressure == 0) || (windDirection == 0) || (temperature == 0.0) || (windSpeed == 0.0)){
+            render("stationfail.html", station);
+        }
+        else {
+            station.readings.add(reading);
+            station.save();
+            redirect("/stations/" + id);
+        }
     }
 }

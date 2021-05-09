@@ -140,7 +140,7 @@ public class Station extends Model
     }
 
     public String weatherCode() {
-        String weatherCode = "Enter valid weather code";
+        String weatherCode = "Invalid weather code";
         icon = "/public/images/na.png";
         if(readings.size() != 0) {
             Reading reading = getLastReading();

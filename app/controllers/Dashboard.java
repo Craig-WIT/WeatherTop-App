@@ -29,13 +29,20 @@ public class Dashboard extends Controller
     redirect ("/dashboard");
   }
 
-  public static void addStation (String name)
+  public static void addStation (String name, double lat, double lng)
   {
     Logger.info("Adding a Station");
     Member member = Accounts.getLoggedInMember();
-    Station station = new Station (name);
-    member.stations.add(station);
-    member.save();
-    redirect ("/dashboard");
+    List<Station> stations = member.stations;
+    Station station = new Station (name,lat,lng);
+    if((name.isEmpty()) || (lat == 0.0) || (lng == 0.0)){
+      stations.sort(Comparator.comparing(Station::getName, String.CASE_INSENSITIVE_ORDER));
+      render("dashboardfail.html", station, stations);
+    }
+    else {
+      member.stations.add(station);
+      member.save();
+      redirect("/dashboard");
+    }
   }
 }
