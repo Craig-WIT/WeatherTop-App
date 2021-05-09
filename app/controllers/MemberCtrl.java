@@ -1,7 +1,6 @@
 package controllers;
 
 import models.Member;
-import play.Logger;
 import play.mvc.Controller;
 
 public class MemberCtrl extends Controller

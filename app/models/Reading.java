@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 import play.db.jpa.Model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Reading extends Model
@@ -14,9 +14,9 @@ public class Reading extends Model
     public int windDirection;
     public double temperature;
     public double windSpeed;
-    public String date;
+    public Date date;
 
-    public Reading(int code, int pressure, int windDirection, double temperature, double windSpeed, String date)
+    public Reading(int code, int pressure, int windDirection, double temperature, double windSpeed, Date date)
     {
         this.code = code;
         this.pressure = pressure;
@@ -46,7 +46,7 @@ public class Reading extends Model
         return pressure;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 }

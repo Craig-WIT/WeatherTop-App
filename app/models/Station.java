@@ -6,9 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.swing.*;
 
-import play.Logger;
 import play.db.jpa.Model;
 import java.lang.Math;
 
@@ -53,6 +51,10 @@ public class Station extends Model
     public String getWeatherCode(){
         this.weatherCode = weatherCode();
         return weatherCode;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public double getTempCelsius() {

@@ -5,6 +5,7 @@ import models.Station;
 import play.Logger;
 import play.mvc.Controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Dashboard extends Controller
@@ -13,6 +14,7 @@ public class Dashboard extends Controller
     Logger.info("Rendering Admin");
     Member member = Accounts.getLoggedInMember();
     List<Station> stations = member.stations;
+    stations.sort(Comparator.comparing(Station::getName, String.CASE_INSENSITIVE_ORDER));
     render ("dashboard.html", stations);
   }
 

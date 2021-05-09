@@ -1,9 +1,10 @@
 package controllers;
 
-import java.util.List;
+import java.util.Calendar;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import org.apache.commons.lang.time.DateUtils;
+import java.util.Date;
+
 import models.Reading;
 import models.Station;
 import play.Logger;
@@ -29,13 +30,11 @@ public class StationCtrl extends Controller
         redirect ("/stations/" + id);
     }
 
-    public static void addReading(Long id, int code, int pressure, int windDirection, double temperature, double windSpeed, String date)
+    public static void addReading(Long id, int code, int pressure, int windDirection, double temperature, double windSpeed, Date roundDate)
     {
-        LocalDateTime timeStamp = LocalDateTime.now();
-        DateTimeFormatter timeStampFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        date = timeStamp.format(timeStampFormat);
-        Logger.info(date);
-        Reading reading = new Reading(code,pressure,windDirection,temperature,windSpeed,date);
+        Date date = new Date();
+        roundDate = DateUtils.round(date, Calendar.SECOND);
+        Reading reading = new Reading(code,pressure,windDirection,temperature,windSpeed,roundDate);
         Station station = Station.findById(id);
         station.readings.add(reading);
         station.save();
