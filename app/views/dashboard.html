@@ -4,11 +4,17 @@
 #{menu id:"dashboard"/}
 
 #{list items:stations, as:'station'}
+#{if stations.size() > 0}
 <section class="ui segment" style="border: 3px solid #043F8C; border-radius: 10px; background-color: #C9E5F0;">
   <h2 class="ui header">
     ${station.name}
   </h2>
+  #{if station.readings.size() > 0}
   #{dashboardSummary station:station /}
+  #{/if}
+  #{else}
+  <p>No weather readings have been added</p>
+  #{/else}
   <a href="/stations/${station.id}">
     <i class="blue inverted circular folder open outline icon"></i>
   </a>
@@ -16,5 +22,11 @@
     <i class="red inverted circular trash alternate outline icon"></i>
   </a>
 </section>
+#{/if}
 #{/list}
+#{else}
+<section class="ui segment" style="border: 3px solid #043F8C; border-radius: 10px; background-color: #C9E5F0;">
+  <p>No Station information has been added</p>
+</section>
+#{/else}
 #{addstation /}
