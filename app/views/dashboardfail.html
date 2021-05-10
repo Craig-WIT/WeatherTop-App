@@ -19,7 +19,7 @@
         ${station.name}
     </h2>
     #{if station.readings.size() > 0}
-    #{dashboardSummary station:station /}
+    #{weatherSummary station:station /}
     #{/if}
     #{else}
     <p>No weather readings have been added</p>

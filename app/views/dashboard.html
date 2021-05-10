@@ -10,7 +10,7 @@
     ${station.name} - Latest Weather
   </h3>
   #{if station.readings.size() > 0}
-  #{dashboardSummary station:station /}
+  #{weatherSummary station:station /}
   #{/if}
   #{else}
   <p>No weather readings have been added for this Station</p>
