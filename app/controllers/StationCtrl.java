@@ -23,7 +23,7 @@ public class StationCtrl extends Controller
     {
         Station station = Station.findById(id);
         Reading reading = Reading.findById(readingid);
-        Logger.info ("Removing" + reading.code);
+        Logger.info ("Removing" + reading.getCode());
         station.readings.remove(reading);
         station.save();
         reading.delete();
