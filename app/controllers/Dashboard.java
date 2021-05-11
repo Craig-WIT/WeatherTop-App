@@ -36,10 +36,11 @@ public class Dashboard extends Controller
     List<Station> stations = member.stations;
     Station station = new Station (name,lat,lng);
     if((name.isEmpty()) || (lat == 0.0) || (lng == 0.0)){
+      String fail = "No details can be left blank";
       stations.sort(Comparator.comparing(Station::getName, String.CASE_INSENSITIVE_ORDER));
-      render("dashboardfail.html", station, stations);
+      render("dashboardfail.html", station, stations,fail);
     }
-    else {
+    else{ 
       member.stations.add(station);
       member.save();
       redirect("/dashboard");

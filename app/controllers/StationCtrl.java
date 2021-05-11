@@ -37,7 +37,8 @@ public class StationCtrl extends Controller
         Reading reading = new Reading(code,pressure,windDirection,temperature,windSpeed,roundDate);
         Station station = Station.findById(id);
         if((code == 0) || (pressure == 0) || (windDirection == 0) || (temperature == 0.0) || (windSpeed == 0.0)){
-            render("stationfail.html", station);
+            String fail = "No details can be left blank";
+            render("stationfail.html", station, fail);
         }
         else {
             station.readings.add(reading);
