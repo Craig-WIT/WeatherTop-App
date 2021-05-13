@@ -6,27 +6,34 @@
 #{list items:stations, as:'station'}
 #{if stations.size() > 0}
 <section class="ui segment" style="border: 3px solid #043F8C; border-radius: 10px; background-color: #C9E5F0;">
-  <h3 class="ui header">
-    ${station.name} - Latest Weather
-  </h3>
-  #{if station.readings.size() > 0}
-  #{weatherSummary station:station /}
-  #{/if}
-  #{else}
-  <p>No weather readings have been added for this Station</p>
-  #{/else}
-  <a href="/stations/${station.id}">
-    <i class="blue inverted circular folder open outline icon"></i>
-  </a>
-  <a href="/dashboard/deletestation/${station.id}">
-    <i class="red inverted circular trash alternate outline icon"></i>
-  </a>
+    <h3 class="ui header">
+        ${station.name} - Latest Weather
+    </h3>
+    #{if station.readings.size() > 0}
+    #{weatherSummary station:station /}
+    #{/if}
+    #{else}
+    <p>No weather readings have been added for this Station</p>
+    #{/else}
+    <a href="/stations/${station.id}">
+        <i class="blue inverted circular folder open outline icon"></i>
+    </a>
+    <a href="/dashboard/deletestation/${station.id}">
+        <i class="red inverted circular trash alternate outline icon"></i>
+    </a>
 </section>
 #{/if}
 #{/list}
 #{else}
 <section class="ui segment" style="border: 3px solid #043F8C; border-radius: 10px; background-color: #C9E5F0;">
-  <p>No Station information has been added</p>
+    <p>No Station information has been added</p>
 </section>
 #{/else}
-#{addstation /}
+<div class="ui two column middle aligned grid basic segment">
+    <div class="column">
+        #{addstation /}
+    </div>
+    <div class="column">
+        <img class="ui image" id="loginImage" src="/public/images/globe.jpg">
+    </div>
+</div>

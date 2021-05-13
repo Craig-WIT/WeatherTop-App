@@ -24,4 +24,11 @@
     <p>No weather readings have been added</p>
     #{/else}
 </section>
-#{addreading station:station /}
+<div class="ui two column middle aligned grid basic segment">
+    <div class="column">
+        #{addreading station:station /}
+    </div>
+    <div class="column">
+        <img class="ui image" id="loginImage" src="/public/images/weatherStation.jpg">
+    </div>
+</div>

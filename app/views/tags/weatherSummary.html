@@ -1,28 +1,30 @@
 <div class="ui segment" style="border: 3px solid #043F8C;">
     <div class="ui five cards">
         <div class="card" id="cardStyle"><h3>Location</h3>
-            <p>Latitude ${_station.lat} <img class="ui image" id="weatherImage" src= "/public/images/location.png">
+            <p>Latitude ${_station.lat} <img class="ui image" id="weatherImage" src="/public/images/location.png">
                 <br>Longitude ${_station.lng}</p>
         </div>
         <div class="card" id="cardStyle"><h3>Weather</h3>
-            <p>${_station.weatherCode} <img class="ui image" id="weatherImage" src= ${_station.icon}></p>
+            <p>${_station.weatherCode} <img class="ui image" id="weatherImage" src=${_station.icon}></p>
         </div>
-        <div class="card" id="cardStyle"><h3>Temperature<img class="ui image" id="trendImage" src= ${_station.tempTrend}></h3>
-            <p>${_station.tempCelsius} C <img class="ui image" id="weatherImage" src= "/public/images/temperature.png">
+        <div class="card" id="cardStyle"><h3>Temperature<img class="ui image" id="trendImage" src=${_station.tempTrend}>
+        </h3>
+            <p>${_station.tempCelsius} C <img class="ui image" id="weatherImage" src="/public/images/temperature.png">
                 <br>${_station.tempFahrenheit} F
                 <br>Max: ${_station.maxTemp} C
                 <br>Min: ${_station.minTemp} C</p>
         </div>
-        <div class="card" id="cardStyle"><h3>Wind<img class="ui image" id="trendImage" src= ${_station.windTrend}></h3>
-            <p>${_station.beaufortScale} bft <img class="ui image" id="weatherImage" src= "/public/images/compass.png">
+        <div class="card" id="cardStyle"><h3>Wind<img class="ui image" id="trendImage" src=${_station.windTrend}></h3>
+            <p>${_station.beaufortScale} bft <img class="ui image" id="weatherImage" src="/public/images/compass.png">
                 <br>${_station.windCompass}
                 <br>Feels like
                 <br>${_station.windChill} C
                 <br>Max: ${_station.maxWind} kM / hr
                 <br>Min: ${_station.minWind} kM / hr</p>
         </div>
-        <div class="card" id="cardStyle"><h3>Pressure<img class="ui image" id="trendImage" src= ${_station.pressureTrend}></h3>
-            <p>${_station.pressure} hPa <img class="ui image" id="weatherImage" src= "/public/images/pressure.png">
+        <div class="card" id="cardStyle"><h3>Pressure<img class="ui image" id="trendImage"
+                                                          src=${_station.pressureTrend}></h3>
+            <p>${_station.pressure} hPa <img class="ui image" id="weatherImage" src="/public/images/pressure.png">
                 <br>Max: ${_station.maxPressure} hPa
                 <br>Min: ${_station.minPressure} hPa</p>
         </div>

@@ -7,8 +7,7 @@ import play.db.jpa.Model;
 import java.util.Date;
 
 @Entity
-public class Reading extends Model
-{
+public class Reading extends Model {
     public int code;
     public int pressure;
     public int windDirection;
@@ -16,8 +15,7 @@ public class Reading extends Model
     public double windSpeed;
     public Date date;
 
-    public Reading(int code, int pressure, int windDirection, double temperature, double windSpeed, Date date)
-    {
+    public Reading(int code, int pressure, int windDirection, double temperature, double windSpeed, Date date) {
         this.code = code;
         this.pressure = pressure;
         this.windDirection = windDirection;
@@ -34,7 +32,7 @@ public class Reading extends Model
         return windDirection;
     }
 
-    public double getTemperature(){
+    public double getTemperature() {
         return temperature;
     }
 

@@ -8,11 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
+
 import java.lang.Math;
 
 @Entity
-public class Station extends Model
-{
+public class Station extends Model {
     public String name;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<>();
@@ -37,8 +37,7 @@ public class Station extends Model
     public String tempTrend;
     public String pressureTrend;
 
-    public Station(String name, double lat,double lng)
-    {
+    public Station(String name, double lat, double lng) {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
@@ -48,12 +47,12 @@ public class Station extends Model
         this.name = name;
     }
 
-    public String getWeatherCode(){
+    public String getWeatherCode() {
         this.weatherCode = weatherCode();
         return weatherCode;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -77,12 +76,12 @@ public class Station extends Model
         return minTemp;
     }
 
-    public int getBeaufortScale(){
+    public int getBeaufortScale() {
         this.beaufortScale = beaufortScale();
         return beaufortScale;
     }
 
-    public String getWindCompass(){
+    public String getWindCompass() {
         this.windCompass = windCompass();
         return windCompass;
     }
@@ -107,42 +106,43 @@ public class Station extends Model
         return pressure;
     }
 
-    public int getMaxPressure(){
+    public int getMaxPressure() {
         this.maxPressure = maxPressure();
         return maxPressure;
     }
 
-    public int getMinPressure(){
+    public int getMinPressure() {
         this.minPressure = minPressure();
         return minPressure;
     }
 
-    public String getWindTrend(){
+    public String getWindTrend() {
         this.windTrend = windTrend();
         return windTrend;
     }
 
-    public String getTempTrend(){
+    public String getTempTrend() {
         this.tempTrend = tempTrend();
         return tempTrend;
     }
 
-    public String getPressureTrend(){
+    public String getPressureTrend() {
         this.pressureTrend = pressureTrend();
         return pressureTrend;
     }
 
-    public Reading getLastReading(){
-        if(readings.size() != 0){
-        int latestReadingId = readings.size() - 1;
-        lastReading = readings.get(latestReadingId);}
+    public Reading getLastReading() {
+        if (readings.size() != 0) {
+            int latestReadingId = readings.size() - 1;
+            lastReading = readings.get(latestReadingId);
+        }
         return lastReading;
     }
 
     public String weatherCode() {
         String weatherCode = "Invalid weather code";
         icon = "/public/images/na.png";
-        if(readings.size() != 0) {
+        if (readings.size() != 0) {
             Reading reading = getLastReading();
             int code = reading.getCode();
             switch (code) {
@@ -187,20 +187,20 @@ public class Station extends Model
         return weatherCode;
     }
 
-    public String getIcon(){
+    public String getIcon() {
         return icon;
     }
 
-    public double tempCelsius(){
-        if(readings.size() != 0) {
+    public double tempCelsius() {
+        if (readings.size() != 0) {
             Reading reading = getLastReading();
             return reading.getTemperature();
         }
         return 0.0;
     }
 
-    public double celsiusToFahrenheit(){
-        if(readings.size() != 0) {
+    public double celsiusToFahrenheit() {
+        if (readings.size() != 0) {
             Reading reading = getLastReading();
             double temperature = reading.getTemperature();
             double toFahrenheit = temperature * 9 / 5 + 32;
@@ -212,7 +212,7 @@ public class Station extends Model
     public int beaufortScale() {
         Reading reading = getLastReading();
         int beaufortScale = 0;
-        if(readings.size() != 0) {
+        if (readings.size() != 0) {
             double windSpeed = reading.getWindSpeed();
             if ((windSpeed >= 0) && (windSpeed <= 1)) {
                 beaufortScale = 0;
@@ -254,23 +254,21 @@ public class Station extends Model
                 return 0;
             }
         }
-            return 0;
-        }
+        return 0;
+    }
 
     public String windCompass() {
         Reading reading = getLastReading();
         String windCompass = "";
-        if(readings.size() != 0) {
+        if (readings.size() != 0) {
             double windDirection = reading.getWindDirection();
             if ((windDirection >= 348.75) && (windDirection <= 360)) {
                 windCompass = "North";
                 return windCompass;
-            }
-            else if ((windDirection >= 0) && (windDirection <= 11.25)) {
+            } else if ((windDirection >= 0) && (windDirection <= 11.25)) {
                 windCompass = "North";
                 return windCompass;
-            }
-            else if ((windDirection >= 11.25) && (windDirection <= 33.75)) {
+            } else if ((windDirection >= 11.25) && (windDirection <= 33.75)) {
                 windCompass = "North NE";
                 return windCompass;
             } else if ((windDirection >= 33.75) && (windDirection <= 56.25)) {
@@ -315,7 +313,7 @@ public class Station extends Model
             } else if ((windDirection >= 326.25) && (windDirection <= 348.75)) {
                 windCompass = "North NW";
                 return windCompass;
-            } else if((windDirection < 0) || (windDirection >360)){
+            } else if ((windDirection < 0) || (windDirection > 360)) {
                 windCompass = "Enter wind direction";
                 return windCompass;
             }
@@ -323,9 +321,9 @@ public class Station extends Model
         return "Enter wind direction";
     }
 
-    public double windChill(){
+    public double windChill() {
         Reading reading = getLastReading();
-        if(readings.size() != 0) {
+        if (readings.size() != 0) {
             double temp = reading.getTemperature();
             double windSpeed = reading.getWindSpeed();
             double windChill = 13.12 + 0.6215 * (temp) - 11.37 * (Math.pow(windSpeed, 0.16)) + 0.3965 * (temp) * (Math.pow(windSpeed, 0.16));
@@ -334,23 +332,23 @@ public class Station extends Model
         return 0.0;
     }
 
-    private double toTwoDecimalPlaces(double num){
-        return (int) (num *100) / 100.0;
+    private double toTwoDecimalPlaces(double num) {
+        return (int) (num * 100) / 100.0;
     }
 
-    public int pressure(){
-        if(readings.size() != 0) {
+    public int pressure() {
+        if (readings.size() != 0) {
             Reading reading = getLastReading();
             return reading.getPressure();
         }
         return 0;
     }
 
-    public double maxTemp(){
+    public double maxTemp() {
         if (readings.size() != 0) {
             Reading maxReading = readings.get(0);
             double maxTemp = maxReading.getTemperature();
-            for (Reading reading: readings) {
+            for (Reading reading : readings) {
                 if (reading.getTemperature() > maxReading.getTemperature())
                     maxTemp = reading.getTemperature();
             }
@@ -359,11 +357,11 @@ public class Station extends Model
             return 0.0;
     }
 
-    public double minTemp(){
+    public double minTemp() {
         if (readings.size() != 0) {
             Reading minReading = readings.get(0);
             double minTemp = minReading.getTemperature();
-            for (Reading reading: readings) {
+            for (Reading reading : readings) {
                 if (reading.getTemperature() < minReading.getTemperature())
                     minTemp = reading.getTemperature();
             }
@@ -372,11 +370,11 @@ public class Station extends Model
             return 0.0;
     }
 
-    public double maxWind(){
+    public double maxWind() {
         if (readings.size() != 0) {
             Reading maxReading = readings.get(0);
             double maxWind = maxReading.getWindSpeed();
-            for (Reading reading: readings) {
+            for (Reading reading : readings) {
                 if (reading.getWindSpeed() > maxReading.getWindSpeed())
                     maxWind = reading.getWindSpeed();
             }
@@ -385,11 +383,11 @@ public class Station extends Model
             return 0.0;
     }
 
-    public double minWind(){
+    public double minWind() {
         if (readings.size() != 0) {
             Reading minReading = readings.get(0);
             double minWind = minReading.getWindSpeed();
-            for (Reading reading: readings) {
+            for (Reading reading : readings) {
                 if (reading.getWindSpeed() < minReading.getWindSpeed())
                     minWind = reading.getWindSpeed();
             }
@@ -398,11 +396,11 @@ public class Station extends Model
             return 0.0;
     }
 
-    public int maxPressure(){
+    public int maxPressure() {
         if (readings.size() != 0) {
             Reading maxReading = readings.get(0);
             int maxPressure = maxReading.getPressure();
-            for (Reading reading: readings) {
+            for (Reading reading : readings) {
                 if (reading.getPressure() > maxReading.getPressure())
                     maxPressure = reading.getPressure();
             }
@@ -411,11 +409,11 @@ public class Station extends Model
             return 0;
     }
 
-    public int minPressure(){
+    public int minPressure() {
         if (readings.size() != 0) {
             Reading minReading = readings.get(0);
             int minPressure = minReading.getPressure();
-            for (Reading reading: readings) {
+            for (Reading reading : readings) {
                 if (reading.getPressure() < minReading.getPressure())
                     minPressure = reading.getPressure();
             }
@@ -441,11 +439,9 @@ public class Station extends Model
                 }
                 if (latestWindTrend > priorWindTrend) {
                     windTrend = "/public/images/trendUp.png";
-                }
-                else if(latestWindTrend < priorWindTrend){
+                } else if (latestWindTrend < priorWindTrend) {
                     windTrend = "/public/images/trendDown.png";
-                }
-                else{
+                } else {
                     windTrend = "/public/images/noTrend.png";
                 }
             }
@@ -470,11 +466,9 @@ public class Station extends Model
                 }
                 if (latestTempTrend > priorTempTrend) {
                     tempTrend = "/public/images/trendUp.png";
-                }
-                else if (latestTempTrend < priorTempTrend){
+                } else if (latestTempTrend < priorTempTrend) {
                     tempTrend = "/public/images/trendDown.png";
-                }
-                else{
+                } else {
                     tempTrend = "/public/images/noTrend.png";
                 }
             }
@@ -499,11 +493,9 @@ public class Station extends Model
                 }
                 if (latestPressureTrend > priorPressureTrend) {
                     pressureTrend = "/public/images/trendUp.png";
-                }
-                else if(latestPressureTrend < priorPressureTrend){
+                } else if (latestPressureTrend < priorPressureTrend) {
                     pressureTrend = "/public/images/trendDown.png";
-                }
-                else{
+                } else {
                     pressureTrend = "/public/images/noTrend.png";
                 }
             }

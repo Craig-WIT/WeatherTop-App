@@ -1,11 +1,12 @@
-<form class="ui stacked segment form" action="/dashboard/addstation" method="POST" style="background-color: #C9E5F0; border: 3px solid white;">
+<form class="ui stacked segment form" action="/dashboard/addstation" method="POST"
+      style="background-color: #C9E5F0; border: 3px solid white;">
     <div class="field">
         <label>Station Name</label>
         <input placeholder="Station name" type="text" name="name">
         <label>Latitude</label>
-        <input placeholder="Latitude" type="number" name="lat" min="-90" max="90">
+        <input placeholder="Latitude" type="number" name="lat" min="-90" max="90" step=".01">
         <label>Longitude</label>
-        <input placeholder="Longitude" type="number" name="lng" min="-180" max="180">
+        <input placeholder="Longitude" type="number" name="lng" min="-180" max="180" step=".01">
     </div>
     <button id="submitButton" class="ui blue submit animated button">
         <div class="visible content">Add Station</div>
