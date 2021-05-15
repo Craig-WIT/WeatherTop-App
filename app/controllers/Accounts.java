@@ -1,8 +1,11 @@
 package controllers;
 
 import models.Member;
+import models.Station;
 import play.Logger;
 import play.mvc.Controller;
+
+import java.util.Comparator;
 
 public class Accounts extends Controller {
     public static void signup() {
@@ -16,8 +19,16 @@ public class Accounts extends Controller {
     public static void register(String firstname, String lastname, String email, String password) {
         Logger.info("Registering new user " + email);
         Member member = new Member(firstname, lastname, email, password);
-        member.save();
-        redirect("/");
+        if ((firstname.isEmpty()) || (lastname.isEmpty()) || (email.isEmpty()) || (password.isEmpty())) {
+            String fail = "No details can be left blank";
+            render("signupfail.html", fail);
+        } else if (Member.findByEmail(email) != null) {
+            String fail = "It looks like your email address is already registered";
+            render("signupfail.html", fail);
+        } else {
+            member.save();
+            redirect("/login");
+        }
     }
 
     public static void authenticate(String email, String password) {
