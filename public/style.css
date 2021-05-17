@@ -40,7 +40,7 @@
 
 #deleteButton{
     background-image: linear-gradient(red,#A74A3A);
-    border: 3px solid #043F8C;
+    border: 3px solid black;
 }
 
 #submitButton{
