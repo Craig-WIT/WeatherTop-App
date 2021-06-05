@@ -425,23 +425,23 @@ public class Station extends Model {
     public String windTrend() {
         String windTrend = "";
         if (readings.size() != 0) {
-            windTrend = "/public/images/noTrend.png";
-            double latestWindTrend = 0;
-            double priorWindTrend = 0;
-            if (readings.size() > 3) {
-                for (int i = 0; i < 3; i++) {
-                    Reading reading = readings.get(readings.size() - i - 1);
-                    latestWindTrend += reading.getWindSpeed();
+            double latestWindSpeed = 0;
+            double secondLastWindSpeed = 0;
+            double thirdLastWindSpeed = 0;
+            if (readings.size() > 2) {
+                    Reading reading3 = readings.get(readings.size() - 1);
+                    Reading reading2 = readings.get(readings.size() - 2);
+                    Reading reading1 = readings.get(readings.size() - 3);
+                    latestWindSpeed = reading3.getWindSpeed();
+                    secondLastWindSpeed = reading2.getWindSpeed();
+                    thirdLastWindSpeed = reading1.getWindSpeed();
+                    if((latestWindSpeed > secondLastWindSpeed) && (secondLastWindSpeed > thirdLastWindSpeed)){
+                        windTrend = "/public/images/trendUp.png";
                 }
-                for (int i = 0; i < 3; i++) {
-                    Reading reading = readings.get(readings.size() - i - 2);
-                    priorWindTrend += reading.getWindSpeed();
-                }
-                if (latestWindTrend > priorWindTrend) {
-                    windTrend = "/public/images/trendUp.png";
-                } else if (latestWindTrend < priorWindTrend) {
-                    windTrend = "/public/images/trendDown.png";
-                } else {
+                else if((latestWindSpeed < secondLastWindSpeed) && (secondLastWindSpeed < thirdLastWindSpeed)){
+                        windTrend = "/public/images/trendDown.png";
+                    }
+                else {
                     windTrend = "/public/images/noTrend.png";
                 }
             }
@@ -452,23 +452,23 @@ public class Station extends Model {
     public String tempTrend() {
         String tempTrend = "";
         if (readings.size() != 0) {
-            tempTrend = "/public/images/noTrend.png";
-            double latestTempTrend = 0;
-            double priorTempTrend = 0;
-            if (readings.size() > 3) {
-                for (int i = 0; i < 3; i++) {
-                    Reading reading = readings.get(readings.size() - i - 1);
-                    latestTempTrend += reading.getTemperature();
-                }
-                for (int i = 0; i < 3; i++) {
-                    Reading reading = readings.get(readings.size() - i - 2);
-                    priorTempTrend += reading.getTemperature();
-                }
-                if (latestTempTrend > priorTempTrend) {
+            double latestTemp = 0;
+            double secondLastTemp = 0;
+            double thirdLastTemp = 0;
+            if (readings.size() > 2) {
+                Reading reading3 = readings.get(readings.size() - 1);
+                Reading reading2 = readings.get(readings.size() - 2);
+                Reading reading1 = readings.get(readings.size() - 3);
+                latestTemp = reading3.getTemperature();
+                secondLastTemp = reading2.getTemperature();
+                thirdLastTemp = reading1.getTemperature();
+                if((latestTemp > secondLastTemp) && (secondLastTemp > thirdLastTemp)){
                     tempTrend = "/public/images/trendUp.png";
-                } else if (latestTempTrend < priorTempTrend) {
+                }
+                else if((latestTemp < secondLastTemp) && (secondLastTemp < thirdLastTemp)){
                     tempTrend = "/public/images/trendDown.png";
-                } else {
+                }
+                else {
                     tempTrend = "/public/images/noTrend.png";
                 }
             }
@@ -479,23 +479,23 @@ public class Station extends Model {
     public String pressureTrend() {
         String pressureTrend = "";
         if (readings.size() != 0) {
-            pressureTrend = "/public/images/noTrend.png";
-            double latestPressureTrend = 0;
-            double priorPressureTrend = 0;
-            if (readings.size() > 3) {
-                for (int i = 0; i < 3; i++) {
-                    Reading reading = readings.get(readings.size() - i - 1);
-                    latestPressureTrend += reading.getPressure();
-                }
-                for (int i = 0; i < 3; i++) {
-                    Reading reading = readings.get(readings.size() - i - 2);
-                    priorPressureTrend += reading.getPressure();
-                }
-                if (latestPressureTrend > priorPressureTrend) {
+            double latestPressure = 0;
+            double secondLastPressure = 0;
+            double thirdLastPressure = 0;
+            if (readings.size() > 2) {
+                Reading reading3 = readings.get(readings.size() - 1);
+                Reading reading2 = readings.get(readings.size() - 2);
+                Reading reading1 = readings.get(readings.size() - 3);
+                latestPressure = reading3.getPressure();
+                secondLastPressure = reading2.getPressure();
+                thirdLastPressure = reading1.getPressure();
+                if((latestPressure > secondLastPressure) && (secondLastPressure > thirdLastPressure)){
                     pressureTrend = "/public/images/trendUp.png";
-                } else if (latestPressureTrend < priorPressureTrend) {
+                }
+                else if((latestPressure < secondLastPressure) && (secondLastPressure < thirdLastPressure)){
                     pressureTrend = "/public/images/trendDown.png";
-                } else {
+                }
+                else {
                     pressureTrend = "/public/images/noTrend.png";
                 }
             }
